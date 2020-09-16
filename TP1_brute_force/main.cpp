@@ -2,6 +2,7 @@
 #include <fstream>
 #include <cfloat>
 #include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -33,9 +34,10 @@ float bruteForce(Point P[], int n)
 
 int main()
 {
+    auto start = chrono::steady_clock::now();
     ifstream file;
     //TODO: acceder au fichier .txt plus directement
-    file.open("C:\\Users\\Simon\\Desktop\\Patate123\\ex10-1.txt");
+    file.open("C:\\Users\\Simon\\Desktop\\Patate123\\ex10-8.txt");
     if (!file) {
         cerr << "Unable to open file";
         exit(1);
@@ -58,6 +60,9 @@ int main()
     file.close();
 
     int n = sizeof(P) / sizeof(P[0]);
-    cout << "The smallest distance is " << bruteForce(P, n);
+    cout << "La distance la plus petite entre deux points est: " << bruteForce(P, n) << '\n';
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    cout << "temps d'execution: " <<chrono::duration <double, milli> (diff).count() << " ms" << endl;
     return 0;
 }
