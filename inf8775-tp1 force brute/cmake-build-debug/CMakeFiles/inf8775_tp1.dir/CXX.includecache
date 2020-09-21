@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/florencec-paquet/CLionProjects/inf8775-tp1/main.cpp
+iostream
+-
+fstream
+-
+float.h
+-
+math.h
+-
+stdio.h
+-
+sstream
+-
+vector
+-
+algorithm
+-
+
