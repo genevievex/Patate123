@@ -37,7 +37,7 @@ int main()
     auto start = chrono::steady_clock::now();
     ifstream file;
     //TODO: acceder au fichier .txt plus directement
-    file.open("C:\\Users\\Simon\\Desktop\\Patate123\\ex10-8.txt");
+    file.open("C:\\Users\\Simon\\Desktop\\Patate123\\exemplaires\\ex10-10.txt");
     if (!file) {
         cerr << "Unable to open file";
         exit(1);
