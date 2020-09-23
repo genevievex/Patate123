@@ -15,9 +15,10 @@ struct Point
 // A utility function to find the distance between two points
 float dist(Point p1, Point p2)
 {
-    return sqrt( (p1.x - p2.x)*(p1.x - p2.x) +
-                 (p1.y - p2.y)*(p1.y - p2.y)
+    return ( std::pow((p1.x - p2.x),2) +
+            std::pow((p1.y - p2.y),2)
     );
+
 }
 
 // A Brute Force method to return the smallest distance between two points
@@ -34,9 +35,8 @@ float bruteForce(Point P[], int n)
 
 int main()
 {
-    auto start = chrono::steady_clock::now();
+     auto start = chrono::steady_clock::now();
     ifstream file;
-    //TODO: acceder au fichier .txt plus directement
     file.open("C:\\Users\\Simon\\Desktop\\Patate123\\exemplaires\\ex10-10.txt");
     if (!file) {
         cerr << "Unable to open file";
@@ -60,7 +60,7 @@ int main()
     file.close();
 
     int n = sizeof(P) / sizeof(P[0]);
-    cout << "La distance la plus petite entre deux points est: " << bruteForce(P, n) << '\n';
+    cout << "La distance eucledienne au carre la plus petite entre deux points est: " << bruteForce(P, n) << '\n';
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     cout << "temps d'execution: " <<chrono::duration <double, milli> (diff).count() << " ms" << endl;
