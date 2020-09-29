@@ -3,6 +3,7 @@
 #include <cfloat>
 #include <string>
 #include <chrono>
+#include <cmath>
 
 using namespace std;
 
@@ -15,8 +16,8 @@ struct Point
 // A utility function to find the distance between two points
 float dist(Point p1, Point p2)
 {
-    return ( std::pow((p1.x - p2.x),2) +
-            std::pow((p1.y - p2.y),2)
+    return (pow((p1.x - p2.x),2) +
+            pow((p1.y - p2.y),2)
     );
 
 }
@@ -37,7 +38,7 @@ int main()
 {
      auto start = chrono::steady_clock::now();
     ifstream file;
-    file.open("C:\\Users\\Simon\\Desktop\\Patate123\\exemplaires\\ex10-10.txt");
+    file.open("ex10-1.txt");
     if (!file) {
         cerr << "Unable to open file";
         exit(1);

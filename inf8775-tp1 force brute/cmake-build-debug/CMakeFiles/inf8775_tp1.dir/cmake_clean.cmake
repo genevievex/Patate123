@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/inf8775_tp1.dir/main.cpp.o"
-  "inf8775_tp1.pdb"
   "inf8775_tp1"
+  "inf8775_tp1.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/Users/Simon/Desktop/Patate123/TP1_brute_force/main.cpp" "C:/Users/Simon/Desktop/Patate123/TP1_brute_force/cmake-build-debug/CMakeFiles/TP1_brute_force.dir/main.cpp.obj"
+  "/Users/florencec-paquet/Patate123/TP1_brute_force/main.cpp" "/Users/florencec-paquet/Patate123/TP1_brute_force/cmake-build-debug/CMakeFiles/TP1_brute_force.dir/main.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "MSVC")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH

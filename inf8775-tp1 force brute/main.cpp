@@ -15,7 +15,7 @@ using namespace std;
 // A structure to represent a Point in 2D plane
 struct Point
 {
-	double x, y;
+	int x, y;
 };
 
 
@@ -38,14 +38,15 @@ int compareY(const void* a, const void* b)
 // A utility function to find the distance between two points
 float dist(Point p1, Point p2)
 {
-	return sqrt( (p1.x - p2.x)*(p1.x - p2.x) +
-				(p1.y - p2.y)*(p1.y - p2.y)
-			);
+    return (pow((p1.x - p2.x),2) +
+            pow((p1.y - p2.y),2)
+    );
 }
+
 
 // A Brute Force method to return the smallest distance between two points
 // in P[] of size n
-float bruteForce(Point P[], double n)
+float bruteForce(Point P[], int n)
 {
 	float min = FLT_MAX;
 	for (int i = 0; i < n; ++i)
@@ -152,8 +153,7 @@ float closest(Point P[], int n)
 // Driver program to test above functions
 int main()
 {
-	Point Points[] = {{413165, 457029}, {821007, 445835}, {156742, 948371}, {623935, 893874}, {294488, 192695}, {470478, 666027}, {960284, 627577}, {989387, 121403}, {746348, 307124}, {876235, 890011}};
-
+    auto start = chrono::steady_clock::now();
     ifstream MyReadFile("test.txt");
 
     if (MyReadFile.is_open()) {
@@ -178,21 +178,21 @@ int main()
             std::getline(lineStream, px, ' ');
             std::getline(lineStream, py, ' ');
 
-            double corx = stoi(px);
-            double cory = stoi(py);
+            int corx = stoi(px);
+            int cory = stoi(py);
 
             Point point {corx, cory};
             ptsFile[i] = point;
 
-            cout << std::to_string(ptsFile[i].x) + " " + std::to_string(ptsFile[i].y) + "\n ";
-
         }
 
         MyReadFile.close();
-        cout <<"force brute tableau codé " << (bruteForce(ptsFile, nbPts)) << "\n ";
-        cout <<"force brute lecture du fichier " << (bruteForce(Points, 10))  << "\n ";
+        cout <<"force brute lecture du fichier " << (bruteForce(ptsFile, 10)) << endl;
         double n = sizeof(ptsFile) / sizeof(ptsFile[0]);
-        cout << "The smallest distance is " << closest(ptsFile, n);
+        cout << "The smallest distance is " << closest(ptsFile, n) << endl;
+        auto end = chrono::steady_clock::now();
+        auto diff = end - start;
+        cout << "temps d'execution: " <<chrono::duration <double, milli> (diff).count() << " ms" << endl;
     }
 
 	return 0; 

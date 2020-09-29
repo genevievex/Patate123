@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/Simon/Desktop/Patate123/TP1_brute_force
+# Install script for directory: /Users/florencec-paquet/Patate123/TP1_brute_force
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/TP1_brute_force")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Simon/Desktop/Patate123/TP1_brute_force/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/florencec-paquet/Patate123/TP1_brute_force/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

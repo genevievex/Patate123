@@ -1,8 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/TP1_brute_force.dir/main.cpp.obj"
-  "TP1_brute_force.exe"
-  "TP1_brute_force.exe.manifest"
-  "TP1_brute_force.lib"
+  "CMakeFiles/TP1_brute_force.dir/main.cpp.o"
+  "TP1_brute_force"
   "TP1_brute_force.pdb"
 )
 

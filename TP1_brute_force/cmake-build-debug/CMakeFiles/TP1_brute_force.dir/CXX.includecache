@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-C:/Users/Simon/Desktop/Patate123/TP1_brute_force/main.cpp
+/Users/florencec-paquet/Patate123/TP1_brute_force/main.cpp
 iostream
 -
 fstream
@@ -16,5 +16,7 @@ cfloat
 string
 -
 chrono
+-
+cmath
 -
 
