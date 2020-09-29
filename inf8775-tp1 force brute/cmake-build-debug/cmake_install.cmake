@@ -1,4 +1,4 @@
-# Install script for directory: /Users/florencec-paquet/CLionProjects/inf8775-tp1
+# Install script for directory: /Users/florencec-paquet/Patate123/inf8775-tp1 force brute
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/Users/florencec-paquet/CLionProjects/inf8775-tp1/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/Users/florencec-paquet/Patate123/inf8775-tp1 force brute/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
