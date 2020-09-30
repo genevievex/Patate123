@@ -48,7 +48,7 @@ float dist(Point p1, Point p2)
 // in P[] of size n
 float bruteForce(Point P[], int n)
 {
-	float min = FLT_MAX;
+    float min = FLT_MAX;
 	for (int i = 0; i < n; ++i)
 		for (int j = i+1; j < n; ++j)
 			if (dist(P[i], P[j]) < min)
@@ -88,7 +88,7 @@ float stripClosest(Point strip[], int size, float d)
 float closestUtil(Point Px[], Point Py[], int n)
 {
     // If there are 2 or 3 points, then use brute force
-    if (n <= 2)
+    if (n <= 3)
         return bruteForce(Px, n);
 
     // Find the middle point
@@ -154,7 +154,7 @@ float closest(Point P[], int n)
 int main()
 {
     auto start = chrono::steady_clock::now();
-    ifstream MyReadFile("test.txt");
+    ifstream MyReadFile("ex100-1.txt");
 
     if (MyReadFile.is_open()) {
         std::string line;
@@ -187,8 +187,8 @@ int main()
         }
 
         MyReadFile.close();
-        cout <<"force brute lecture du fichier " << (bruteForce(ptsFile, 10)) << endl;
-        double n = sizeof(ptsFile) / sizeof(ptsFile[0]);
+        int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
+        cout <<"force brute lecture du fichier " << (bruteForce(ptsFile, n)) << endl;
         cout << "The smallest distance is " << closest(ptsFile, n) << endl;
         auto end = chrono::steady_clock::now();
         auto diff = end - start;
