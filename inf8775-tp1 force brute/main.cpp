@@ -85,10 +85,10 @@ float stripClosest(Point strip[], int size, float d)
 // A recursive function to find the smallest distance. The array Px contains
 // all points sorted according to x coordinates and Py contains all points
 // sorted according to y coordinates
-float closestUtil(Point Px[], Point Py[], int n)
+float closestUtil(Point Px[], Point Py[], int n, int seuil)
 {
     // If there are 2 or 3 points, then use brute force
-    if (n <= 3)
+    if (n <= seuil)
         return bruteForce(Px, n);
 
     // Find the middle point
@@ -112,8 +112,8 @@ float closestUtil(Point Px[], Point Py[], int n)
     // Consider the vertical line passing through the middle point
     // calculate the smallest distance dl on left of middle point and
     // dr on right side
-    float dl = closestUtil(Px, Pyl, mid);
-    float dr = closestUtil(Px + mid, Pyr, n-mid);
+    float dl = closestUtil(Px, Pyl, mid, seuil);
+    float dr = closestUtil(Px + mid, Pyr, n-mid, seuil);
 
     // Find the smaller of two distances
     float d = min(dl, dr);
@@ -133,7 +133,7 @@ float closestUtil(Point Px[], Point Py[], int n)
 
 // The main function that finds the smallest distance
 // This method mainly uses closestUtil()
-float closest(Point P[], int n)
+float closest(Point P[], int n, int seuil)
 {
     Point Px[n];
     Point Py[n];
@@ -147,14 +147,38 @@ float closest(Point P[], int n)
     qsort(Py, n, sizeof(Point), compareY);
 
     // Use recursive function closestUtil() to find the smallest distance
-    return closestUtil(Px, Py, n);
+    return closestUtil(Px, Py, n, seuil);
 }
 
 // Driver program to test above functions
-int main()
+int main(int argc, char *argv[])
 {
-    auto start = chrono::steady_clock::now();
-    ifstream MyReadFile("ex100-1.txt");
+    if(argc < 2)
+        throw std::invalid_argument("Nombre d'arguments insuffisant. Vous devez entrer au moins 2 arguments");
+
+    struct {
+        std::string algo;
+        std::string file_path;
+        bool print_res{false};
+        bool print_time{false};
+    } prog_args;
+
+    for (int i=1; i<argc; i++) {
+        std::string arg(argv[i]);
+        if (arg == "-a") {
+            prog_args.algo = argv[i+1];
+            i++;
+        } else if (arg == "-e") {
+            prog_args.file_path = argv[i+1];
+            i++;
+        } else if (arg == "-p") {
+            prog_args.print_res = true;
+        } else if (arg == "-t") {
+            prog_args.print_time = true;
+        }
+    }
+
+    ifstream MyReadFile(prog_args.file_path);
 
     if (MyReadFile.is_open()) {
         std::string line;
@@ -187,12 +211,17 @@ int main()
         }
 
         MyReadFile.close();
+
         int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
-        cout <<"force brute lecture du fichier " << (bruteForce(ptsFile, n)) << endl;
-        cout << "The smallest distance is " << closest(ptsFile, n) << endl;
-        auto end = chrono::steady_clock::now();
-        auto diff = end - start;
-        cout << "temps d'execution: " <<chrono::duration <double, milli> (diff).count() << " ms" << endl;
+        // Apply correct algorithm
+        if (prog_args.algo == "brute")
+            cout <<"force brute lecture du fichier " << (bruteForce(ptsFile, n)) << endl;
+        else if(prog_args.algo == "recursif")
+            cout << "The smallest distance is " << closest(ptsFile, n, 2) << endl;
+        else if(prog_args.algo == "seuil"){
+            closest(ptsFile, n, 10);
+        }
+
     }
 
 	return 0; 
