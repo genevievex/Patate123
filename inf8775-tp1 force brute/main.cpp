@@ -10,6 +10,7 @@
 #include <sstream>
 #include <vector>
 #include <algorithm>
+#include <tuple>
 using namespace std;
 
 // A structure to represent a Point in 2D plane
@@ -56,13 +57,13 @@ float bruteForce(Point P[], int n)
 	return min;
 }
 
-auto execute_BF(Point P[], int n)
+std::tuple<int, double> execute_BF(Point P[], int n)
 {
     auto start = chrono::steady_clock::now();
-    bruteForce(P, n);
+    auto dist = bruteForce(P, n);
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
-    return chrono::duration <double, milli> (diff).count();
+    return std::make_tuple(dist, chrono::duration <double, milli> (diff).count());
 }
 
 // A utility function to find a minimum of two float values
@@ -159,20 +160,20 @@ float closest(Point P[], int n, int seuil)
     return closestUtil(Px, Py, n, seuil);
 }
 
-auto execute_DPR(Point P[], int n, int seuil)
+std::tuple<int, double> execute_DPR(Point P[], int n, int seuil)
 {
     auto start = chrono::steady_clock::now();
-    closest(P, n, seuil);
+    auto dist = closest(P, n, seuil);
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
-    return chrono::duration <double, milli> (diff).count();
+    return std::make_tuple(dist, chrono::duration <double, milli> (diff).count());
 }
 
 // Driver program to test above functions
-int main()
+int main() //int argc, char* argv[]
 {
     /*if(argc < 2)
-        throw std::invalid_argument("Nombre d'arguments insuffisant. Vous devez entrer au moins 2 arguments");
+        throw std::invalid_argument("Nombre d'arguments insuffisant.");
 
     struct {
         std::string algo;
@@ -238,15 +239,31 @@ int main()
 
         int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
         cout << n << endl;
-        cout <<"force brute: " << (bruteForce(ptsFile, n)) << "     temps: " << (execute_BF(ptsFile, n)) << endl;
-        cout << "DPR seuil elementaire: " << closest(ptsFile, n, 2) << "    temps: " << execute_DPR(ptsFile, n, 2) << endl;
+
+        int dist;
+        double time;
+
+        //TEST SELON ALGO CHOISI
+        //tie(dist, time) = (execute_BF(ptsFile, n));
+        //tie(dist, time) = execute_DPR(ptsFile, n, 2);
+        tie(dist, time) = execute_DPR(ptsFile, n, 100);
+        cout << "algo: " << dist << ',' << time << endl;
+
         // Apply correct algorithm
         /*if (prog_args.algo == "brute")
-            cout <<"force brute: " << (execute_BF(ptsFile, n)) << endl;
+        {
+            tie(dist, time) = execute_DPR(ptsFile, n, 2);
+            cout << "BR: " << dist << ',' << time << endl;
+        }
         else if(prog_args.algo == "recursif")
-            cout << "The smallest distance is " << execute_DPR(ptsFile, n, 2) << endl;
+         {
+            tie(dist, time) = execute_DPR(ptsFile, n, 2);
+            cout << "DPR recursif: " << dist << ',' << time << endl;
+         }
         else if(prog_args.algo == "seuil"){
-            closest(ptsFile, n, 10);*/
+            tie(dist, time) = execute_DPR(ptsFile, n, 10);
+            cout << "DPR seuil: " << dist << ',' << time << endl;
+        }*/
 
     }
 
