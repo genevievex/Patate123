@@ -56,6 +56,15 @@ float bruteForce(Point P[], int n)
 	return min;
 }
 
+auto execute_BF(Point P[], int n)
+{
+    auto start = chrono::steady_clock::now();
+    bruteForce(P, n);
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    return chrono::duration <double, milli> (diff).count();
+}
+
 // A utility function to find a minimum of two float values
 float min(float x, float y)
 {
@@ -150,10 +159,19 @@ float closest(Point P[], int n, int seuil)
     return closestUtil(Px, Py, n, seuil);
 }
 
-// Driver program to test above functions
-int main(int argc, char *argv[])
+auto execute_DPR(Point P[], int n, int seuil)
 {
-    if(argc < 2)
+    auto start = chrono::steady_clock::now();
+    closest(P, n, seuil);
+    auto end = chrono::steady_clock::now();
+    auto diff = end - start;
+    return chrono::duration <double, milli> (diff).count();
+}
+
+// Driver program to test above functions
+int main()
+{
+    /*if(argc < 2)
         throw std::invalid_argument("Nombre d'arguments insuffisant. Vous devez entrer au moins 2 arguments");
 
     struct {
@@ -176,11 +194,12 @@ int main(int argc, char *argv[])
         } else if (arg == "-t") {
             prog_args.print_time = true;
         }
-    }
+    }*/
 
-    ifstream MyReadFile(prog_args.file_path);
+    //ifstream MyReadFile(prog_args.file_path);
+    ifstream MyReadFile("test.txt");
 
-    if (MyReadFile.is_open()) {
+    if(MyReadFile.is_open()) {
         std::string line;
         int nbPts;
 
@@ -213,14 +232,15 @@ int main(int argc, char *argv[])
         MyReadFile.close();
 
         int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
+        cout <<"force brute: " << (bruteForce(ptsFile, n)) << "temps: " << (execute_BF(ptsFile, n)) << endl;
+        cout << "TDPR seuil elementaire: " << closest(ptsFile, n, 2) << "temps: " << execute_DPR(ptsFile, n, 2) << endl;
         // Apply correct algorithm
-        if (prog_args.algo == "brute")
-            cout <<"force brute lecture du fichier " << (bruteForce(ptsFile, n)) << endl;
+        /*if (prog_args.algo == "brute")
+            cout <<"force brute: " << (execute_BF(ptsFile, n)) << endl;
         else if(prog_args.algo == "recursif")
-            cout << "The smallest distance is " << closest(ptsFile, n, 2) << endl;
+            cout << "The smallest distance is " << execute_DPR(ptsFile, n, 2) << endl;
         else if(prog_args.algo == "seuil"){
-            closest(ptsFile, n, 10);
-        }
+            closest(ptsFile, n, 10);*/
 
     }
 
