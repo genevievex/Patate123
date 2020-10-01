@@ -197,7 +197,12 @@ int main()
     }*/
 
     //ifstream MyReadFile(prog_args.file_path);
-    ifstream MyReadFile("test.txt");
+    ifstream MyReadFile("ex100000-1.txt");
+
+    if (!MyReadFile) {
+        cerr << "Unable to open file";
+        exit(1);
+    }
 
     if(MyReadFile.is_open()) {
         std::string line;
@@ -232,8 +237,9 @@ int main()
         MyReadFile.close();
 
         int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
-        cout <<"force brute: " << (bruteForce(ptsFile, n)) << "temps: " << (execute_BF(ptsFile, n)) << endl;
-        cout << "TDPR seuil elementaire: " << closest(ptsFile, n, 2) << "temps: " << execute_DPR(ptsFile, n, 2) << endl;
+        cout << n << endl;
+        cout <<"force brute: " << (bruteForce(ptsFile, n)) << "     temps: " << (execute_BF(ptsFile, n)) << endl;
+        cout << "DPR seuil elementaire: " << closest(ptsFile, n, 2) << "    temps: " << execute_DPR(ptsFile, n, 2) << endl;
         // Apply correct algorithm
         /*if (prog_args.algo == "brute")
             cout <<"force brute: " << (execute_BF(ptsFile, n)) << endl;
