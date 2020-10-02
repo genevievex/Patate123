@@ -11,6 +11,8 @@
 #include <vector>
 #include <algorithm>
 #include <tuple>
+#include <chrono>
+
 using namespace std;
 
 // A structure to represent a Point in 2D plane
@@ -40,8 +42,9 @@ int compareY(const void* a, const void* b)
 float dist(Point p1, Point p2)
 {
     return (pow((p1.x - p2.x),2) +
-            pow((p1.y - p2.y),2)
-    );
+                      pow((p1.y - p2.y),2));
+
+
 }
 
 
@@ -57,10 +60,11 @@ float bruteForce(Point P[], int n)
 	return min;
 }
 
-std::tuple<int, double> execute_BF(Point P[], int n)
+std::tuple<float, double> execute_BF(Point P[], int n)
 {
     auto start = chrono::steady_clock::now();
-    auto dist = bruteForce(P, n);
+    float dist = bruteForce(P, n);
+    cout << "bruteForce dist: " << dist << '\n';
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     return std::make_tuple(dist, chrono::duration <double, milli> (diff).count());
@@ -160,10 +164,10 @@ float closest(Point P[], int n, int seuil)
     return closestUtil(Px, Py, n, seuil);
 }
 
-std::tuple<int, double> execute_DPR(Point P[], int n, int seuil)
+std::tuple<float, double> execute_DPR(Point P[], int n, int seuil)
 {
     auto start = chrono::steady_clock::now();
-    auto dist = closest(P, n, seuil);
+    float dist = closest(P, n, seuil);
     auto end = chrono::steady_clock::now();
     auto diff = end - start;
     return std::make_tuple(dist, chrono::duration <double, milli> (diff).count());
@@ -198,7 +202,7 @@ int main() //int argc, char* argv[]
     }*/
 
     //ifstream MyReadFile(prog_args.file_path);
-    ifstream MyReadFile("ex100000-1.txt");
+    ifstream MyReadFile("C:\\Users\\Simon\\Desktop\\Patate123\\exemplaires\\ex100000-1.txt");
 
     if (!MyReadFile) {
         cerr << "Unable to open file";
@@ -240,14 +244,14 @@ int main() //int argc, char* argv[]
         int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
         cout << n << endl;
 
-        int dist;
+        float dist;
         double time;
 
         //TEST SELON ALGO CHOISI
         //tie(dist, time) = (execute_BF(ptsFile, n));
-        //tie(dist, time) = execute_DPR(ptsFile, n, 2);
-        tie(dist, time) = execute_DPR(ptsFile, n, 100);
-        cout << "algo: " << dist << ',' << time << endl;
+        tie(dist, time) = execute_DPR(ptsFile, n, 2);
+        //tie(dist, time) = execute_DPR(ptsFile, n, 100);
+        cout << "distance " << dist << ",time:" << time << endl;
 
         // Apply correct algorithm
         /*if (prog_args.algo == "brute")
