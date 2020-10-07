@@ -6,7 +6,6 @@
 #include <fstream>
 #include <float.h>
 #include <math.h>
-#include <stdio.h>
 #include <sstream>
 #include <vector>
 #include <algorithm>
@@ -43,7 +42,6 @@ float dist(Point p1, Point p2)
 {
     return (pow((p1.x - p2.x),2) +
                       pow((p1.y - p2.y),2));
-
 
 }
 
@@ -237,12 +235,6 @@ int main(int argc, char* argv[]) //int argc, char* argv[]
 
         float dist;
         double time;
-
-        //TEST SELON ALGO CHOISI
-        //tie(dist, time) = (execute_BF(ptsFile, n));
-        //tie(dist, time) = execute_DPR(ptsFile, n, 2);
-        //tie(dist, time) = execute_DPR(ptsFile, n, 100);
-        //cout << "distance " << dist << ",time:" << time << endl;
 
         // Apply correct algorithm
         if (prog_args.algo == "brute")
