@@ -174,11 +174,8 @@ std::tuple<float, double> execute_DPR(Point P[], int n, int seuil)
 }
 
 // Driver program to test above functions
-int main() //int argc, char* argv[]
+int main(int argc, char* argv[]) //int argc, char* argv[]
 {
-    /*if(argc < 2)
-        throw std::invalid_argument("Nombre d'arguments insuffisant.");
-
     struct {
         std::string algo;
         std::string file_path;
@@ -199,15 +196,9 @@ int main() //int argc, char* argv[]
         } else if (arg == "-t") {
             prog_args.print_time = true;
         }
-    }*/
-
-    //ifstream MyReadFile(prog_args.file_path);
-    ifstream MyReadFile("C:\\Users\\Simon\\Desktop\\Patate123\\exemplaires\\ex100000-1.txt");
-
-    if (!MyReadFile) {
-        cerr << "Unable to open file";
-        exit(1);
     }
+
+    ifstream MyReadFile(prog_args.file_path);
 
     if(MyReadFile.is_open()) {
         std::string line;
@@ -249,12 +240,12 @@ int main() //int argc, char* argv[]
 
         //TEST SELON ALGO CHOISI
         //tie(dist, time) = (execute_BF(ptsFile, n));
-        tie(dist, time) = execute_DPR(ptsFile, n, 2);
+        //tie(dist, time) = execute_DPR(ptsFile, n, 2);
         //tie(dist, time) = execute_DPR(ptsFile, n, 100);
-        cout << "distance " << dist << ",time:" << time << endl;
+        //cout << "distance " << dist << ",time:" << time << endl;
 
         // Apply correct algorithm
-        /*if (prog_args.algo == "brute")
+        if (prog_args.algo == "brute")
         {
             tie(dist, time) = execute_DPR(ptsFile, n, 2);
             cout << "BR: " << dist << ',' << time << endl;
@@ -265,10 +256,9 @@ int main() //int argc, char* argv[]
             cout << "DPR recursif: " << dist << ',' << time << endl;
          }
         else if(prog_args.algo == "seuil"){
-            tie(dist, time) = execute_DPR(ptsFile, n, 10);
+            tie(dist, time) = execute_DPR(ptsFile, n, 25);
             cout << "DPR seuil: " << dist << ',' << time << endl;
-        }*/
-
+        }
     }
 
 	return 0; 
