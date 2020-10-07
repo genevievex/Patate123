@@ -248,17 +248,23 @@ int main(int argc, char* argv[]) //int argc, char* argv[]
         if (prog_args.algo == "brute")
         {
             tie(dist, time) = execute_DPR(ptsFile, n, 2);
-            cout << "BR: " << dist << ',' << time << endl;
+            cout << "L'algorithme force brute a été selectionné" << endl;
         }
         else if(prog_args.algo == "recursif")
          {
             tie(dist, time) = execute_DPR(ptsFile, n, 2);
-            cout << "DPR recursif: " << dist << ',' << time << endl;
+             cout << "L'algorithme DPR avec seuil élémentaire a été selectionné" << endl;
          }
         else if(prog_args.algo == "seuil"){
             tie(dist, time) = execute_DPR(ptsFile, n, 25);
-            cout << "DPR seuil: " << dist << ',' << time << endl;
+            cout << "L'algorithme DPR avec seuil expérimental a été selectionné" << endl;
         }
+
+        if(prog_args.print_time)
+            cout << "Temps: " << time << endl;
+
+        if(prog_args.print_res)
+            cout << "Distance: " << dist << endl;
     }
 
 	return 0; 
