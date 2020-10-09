@@ -231,7 +231,6 @@ int main(int argc, char* argv[]) //int argc, char* argv[]
         MyReadFile.close();
 
         int n = sizeof(ptsFile) / sizeof(ptsFile[0]);
-        cout << n << endl;
 
         float dist;
         double time;
@@ -240,23 +239,23 @@ int main(int argc, char* argv[]) //int argc, char* argv[]
         if (prog_args.algo == "brute")
         {
             tie(dist, time) = execute_DPR(ptsFile, n, 2);
-            cout << "L'algorithme force brute a été selectionné" << endl;
+
         }
         else if(prog_args.algo == "recursif")
          {
             tie(dist, time) = execute_DPR(ptsFile, n, 2);
-             cout << "L'algorithme DPR avec seuil élémentaire a été selectionné" << endl;
+
          }
         else if(prog_args.algo == "seuil"){
             tie(dist, time) = execute_DPR(ptsFile, n, 25);
-            cout << "L'algorithme DPR avec seuil expérimental a été selectionné" << endl;
+
         }
 
         if(prog_args.print_time)
-            cout << "Temps: " << time << endl;
+            cout << time << endl;
 
         if(prog_args.print_res)
-            cout << "Distance: " << dist << endl;
+            cout << dist << endl;
     }
 
 	return 0; 
